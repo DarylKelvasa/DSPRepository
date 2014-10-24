@@ -1,0 +1,60 @@
+% CHAPTER 5 LESSON 1
+
+\section{Tube Model of the Vocal Tract}
+\label{Tube Model of the Vocal Tract}
+
+
+The first chapter introduced the concept of the source filter model for speech production. In this model an excitiation source (air pushed from the lungs) is passed through a filter (the vocal tract) to produce speech. Air pushed from the lungs can be periodically regulated by the glottus producing a voiced speech sound.  When the glottus is not used, and air is simply pushed through the vocal tract, an unvoiced sound is produced. Because the vocal tract is not perfectly cylindrical, reflections occur. These reflections produce resonances, also called formants, that are critical for distinguishing speech sounds. 
+
+\begin{figure}[h]
+	\centering
+	 \def\svgwidth{10cm}
+	\includegraphics[width=0.5\linewidth]{Pictures/Chapter3_Lesson3/filterVUv2-eps-converted-to.pdf}
+	\caption{Source filter model of the vocal tract}
+	\label{fig:SourceFil}
+\end{figure}
+
+Figure 3.1 displays the method that will be sued to model the excitation sources. Voiced speech is modelled as a pulse train, whereas random noise is used to model unvoiced speech.  Note that there is a switch in the diagram implying that the model will require some sort of detection to switch between the two sources. 
+
+Now we want a model for speech production.  We therefore decompose speech into excitation souorce and spectral shape. The excitation source can be modelled as a pulse train. Unvoiced can be a random noise generator.  Also can be used for mixed excitiation. 
+
+The second part is the vocal tract filter that can be modelled by a tube where we ignore the nasal tract because it is complicated.
+
+What we want is a mathematical model for the vocal tract. Once we have this model, then we can estimate the parameters that describe the shape of our voacl tract only from the speech recording. We start with what is phsically going on in the vocal tract.
+
+We know that sound is a pressure wave.  That there air particles in it that oscillate back and forth.  There are area of compression and areas of refraction.  
+
+WE now consider a pressure wave within a tube.  The interaction of the particles with the tube ends whteher open or closed introduces boundary conditions to the problem, that affect the propagation of the wave through the medium.  At the open end the pressure wave is forced to have a minimum, at the closed end, it is forced to have a maximum.
+
+We define pressure P(x,t), v(x,t) V(x,t) from these, we can define an acoustical impedance.
+
+Whenever there is a change in impedance, we have a reflection.  This can be charaterized by a reflection coefficient that is a function of the acoustical impedance of the two media.
+
+Put in equations
+
+The close end = pressure maximum, velocity minimum (particles cant move.)
+open end = opposite
+
+put into equations we see that
+
+ at the closed end, the reflection coefficient goes to -1
+
+at the open end, we have a reflection with +1
+
+This now implies that we have a backward travelling wave from the open end reflection.  The forward wave and the backward wave will add up. They will add up if they match the resonance frequency of the tube. 
+
+picture of tube with wavelengths.  Derivation of equations for vocal tract resonances. One resonance per kHz!!!! Approx 4 resonances per kHz. However if this was the case with our vocal tract, speech would be unintelligible because the formants do not change.  Becasue we cannot alter the length of our vocal tract, we can instead constrict certian parts to change the postion of the resonances. We have to therefore model the voacl tract as a tube with individual segments that change their shpae over time.
+
+pictiure
+
+We can treat this as a set of short indivudal tubes and do the same computations for each segment as we did for the tube.  We can then concatenate the results to get our filter.
+
+SO we have short cylindrical tubes with different areas 
+
+equations
+
+Assumptions:
+low friction, plane wave prop
+
+Therefore we can use equations for pressure and volum velocity 
+

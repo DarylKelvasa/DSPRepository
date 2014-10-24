@@ -1,0 +1,457 @@
+%\newcommand{\figref}[1]{\figurename~\ref{#1}}
+%\newcommand{\tabref}[1]{Table~\ref{#1}}
+%\newcommand{\secref}[1]{Sec.~\ref{#1}}
+%\renewcommand{\eqref}[1]{Eq.~(\ref{#1})}
+%
+%\newcommand{\kommentar}[1]{\-\marginpar[\raggedleft\footnotesize \textsf {#1}]{\raggedright\footnotesize \textsf {#1}}}
+
+%expected value
+\newcommand{\E}[1]{\mathrm{E}{  \left(  #1 \right)  }}
+\newcommand{\EY}[2]{\mathrm{E}_{#1}{  \left(  #2 \right)  }}
+
+\newcommand{\mean}[1]{m_{#1}}
+\newcommand{\autocorr}[1]{\varphi_\mathrm{#1#1}}
+\newcommand{\crosscorr}[1]{\varphi_\mathrm{#1}}
+\newcommand{\crosscorre}[1]{\widehat{\varphi}_\mathrm{#1}}
+\newcommand{\Autocorr}[1]{\Phi_\mathrm{#1#1}}
+\newcommand{\Crosscorr}[1]{\Phi_\mathrm{#1}}
+\newcommand{\Autocorrbf}[1]{\boldsymbol{\Phi}_\mathrm{#1#1}}
+\newcommand{\Crosscorrbf}[1]{\boldsymbol{\Phi}_\mathrm{#1}}
+\newcommand{\autocorre}[1]{\widehat{\varphi}_\mathrm{#1#1}}
+\newcommand{\corrvec}[1]{\mathbf{\varphi}_\mathrm{#1}}
+\newcommand{\corrmat}[1]{\mathbf{R}_\mathrm{#1}}
+\newcommand{\psd}[1]{\Phi_{#1}}
+
+% function name
+\newcommand{\funcname}[1]
+{\mathrm{#1}}
+
+% estimate
+\newcommand{\estimation}[1]
+{\ensuremath{\widehat{#1}}} % symbol for estimation
+
+%smoothed quantity
+\newcommand{\smoothB}[1]{\widetilde{#1}}
+\newcommand{\smooth}[1]{\bar{#1}}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}} % vector
+
+% variance of ... \var{x} \sigma
+\newcommand{\var}[1]{\funcname{var}\!\lefta{#1}} 
+\newcommand{\cov}[1]{\mbox{cov}\!\lefta{#1}}
+
+% e to the power of ... ( e^{} )
+\newcommand{\epow}[1]{\funcname{e}^{#1}}
+
+% argmax operator
+\newcommand{\argmax}[1]{
+\underset{#1}{\funcname{argmax}}}
+
+
+
+% frequency domain
+\newcommand{\numfreq}%
+	{\ensuremath{N} }   		%number of samples per segment
+\newcommand{\frameshift}%
+	{\ensuremath{R} }	% frame shift
+\newcommand{\freqi}%
+	{\ensuremath{k} }   		% frequency index
+\newcommand{\framei}%
+	{\ensuremath{\ell} }    		% frame index
+\newcommand{\ff}{_\freqi\!\lefta{\framei}} % function of (frequ,frame)
+\newcommand{\ffprev}{_\freqi\!\lefta{\framei-1}} % function of (frequ,frame-1)
+
+%real and imaginary part
+\newcommand{\real}[1]{\mathrm{Re}\leftc{#1}} % Re{.}
+\newcommand{\imag}[1]{\mathrm{Im}\leftc{#1}} % Im{.}
+
+
+
+%===========================================================
+%=== SIGNALS/SPECTRA
+%===========================================================
+\newcommand{\Xc}%  complex random variable
+        {\ensuremath{X} }  % complex spectrum of speech S
+\newcommand{\Xcf}%
+       {\ensuremath{\Xc_\freqi} } 
+\newcommand{\xrf}%
+       {\ensuremath{\xr_\freqi} }
+\newcommand{\xr}%
+       {\ensuremath{x} }  
+\newcommand{\Sc}%  complex random variable
+        {\ensuremath{S} }  % complex spectrum of speech S
+\newcommand{\Scf}%
+       {\ensuremath{\Sc_\freqi} } 
+\newcommand{\Scff}%
+       {\ensuremath{\Sc\ff} } 
+\newcommand{\sr} %realization
+        {\ensuremath{s} }
+\newcommand{\srf}%
+       {\ensuremath{\sr_\freqi} } 
+\newcommand{\srff}%
+       {\ensuremath{\sr\ff} } 
+\newcommand{\ssig}
+       {\ensuremath{s[n]} }
+\newcommand{\Sa}%  magnitude of complex random variable
+        {\ensuremath{A} }  % 
+        \newcommand{\sar}%  magnitude of complex realization
+        {\ensuremath{a} }  % 
+\newcommand{\Saf}%
+       {\ensuremath{\Sa_\freqi} } 
+\newcommand{\Saff}%
+       {\ensuremath{\Sa\ff} } 
+\newcommand{\Sphase}% speech phase random variable
+        {\ensuremath{\Phi} }  % speech phase random variable
+\newcommand{\Sphasef}% speech phase random variable
+        {\ensuremath{\Sphase_\freqi} }  % speech phase random variable
+ \newcommand{\sphase}% speech phase realization
+        {\ensuremath{\phi} }  % speech phase realization\newcommand{\Nc}%
+\newcommand{\Nc}%  complex random variable
+	{\ensuremath{N} }
+\newcommand{\Ncf}%
+	{\ensuremath{\Nc_\freqi} }	
+\newcommand{\Ncff}%
+	{\ensuremath{\Nc\ff} }
+\newcommand{\nr}%
+	{\ensuremath{n} }
+\newcommand{\nrf}%
+	{\ensuremath{\nr_\freqi} }	
+\newcommand{\nrff}%
+	{\ensuremath{\nr\ff} } 		
+\newcommand{\nsig}
+       {\ensuremath{n[n]} }
+
+\newcommand{\Yc}%
+	{\ensuremath{Y} }
+\newcommand{\Ycf}%
+       {\ensuremath{\Yc_\freqi} } 	
+\newcommand{\Ycff}%
+	{\Yc\ff}
+\newcommand{\yr}%
+	{\ensuremath{y} }
+\newcommand{\yrf}%
+       {\ensuremath{\yr_\freqi} } 	
+\newcommand{\yrff}%
+	{\yr\ff}
+\newcommand{\ysig}
+       {\ensuremath{y[n]} }
+\newcommand{\yframe}
+       {\ensuremath{\underline{y}_\framei} }
+\newcommand{\sframe}
+       {\ensuremath{\underline{s}_\framei} }
+\newcommand{\Ya}%  magnitude of complex random variable
+        {\ensuremath{R} }  %
+\newcommand{\Yaf}%  magnitude of complex random variable
+        {\ensuremath{R_\freqi} }  %  
+        \newcommand{\yar}%  magnitude of realization
+        {\ensuremath{r} }  % 
+       \newcommand{\Yphase}% noisy phase random variable
+        {\ensuremath{\Theta} }  % noisy phase random variable
+\newcommand{\Yphasef}% noisy phase random variable
+        {\ensuremath{\Yphase_\freqi} }  % noisy phase random variable
+ \newcommand{\yphase}% noisy phase realization
+        {\ensuremath{\theta} }  % noisy phase realization
+% Cepstrum
+\newcommand{\sq}%
+	{\ensuremath{s} }  	
+\newcommand{\sqcf}%
+	{\sq\cf}
+\newcommand{\sqc}%
+	{{\sq_\cepsi}}
+  \newcommand{\sqtcf}%
+	{\widetilde{\sq}\cf}
+    \newcommand{\sqtc}%
+	{\widetilde{\sq}_\cepsi}			
+
+\newcommand{\nq}%
+	{\ensuremath{n} }  	
+\newcommand{\nqcf}%
+	{\nq\cf}	
+  \newcommand{\nqtcf}%
+	{\widetilde{\nq}\cf}	
+\newcommand{\nqtc}%
+	{\widetilde{\yq}_\cepsi}
+
+\newcommand{\yq}%
+	{\ensuremath{y} }  	
+\newcommand{\yqcf}%
+	{\yq\cf}		
+\newcommand{\yqtcf}%
+	{\widetilde{\yq}\cf}	
+\newcommand{\yqtc}%
+	{\widetilde{\yq}_\cepsi}
+
+% estimation 
+
+\newcommand{\stime}{s}
+\newcommand{\ytime}{y}
+\newcommand{\ntime}{n}
+\newcommand{\setime}{\widehat{s}}
+
+\newcommand{\Sec}%
+        {\ensuremath{\estimation{\Sc}} }    % estimation of S
+\newcommand{\Seff}{\Sec\ff}            % estimation of S (frequ,frame)
+\newcommand{\Secf}{\Sec_\freqi}            % estimation of S (frequ,frame)
+\newcommand{\Seffprev}{\Sec\ffprev}            % estimation of S (frequ,frame)
+
+\newcommand{\seff}%
+        {\ensuremath{\estimation{\sr}\ff } }    % realization of estimate
+\newcommand{\ssigest} %signal estimate
+       {\ensuremath{\estimation{s}[n]} }
+\newcommand{\sframeest}
+       {\ensuremath{\estimation{\underline{s}}_\framei} }%frame estimate
+\newcommand{\Saestff}%
+       {\ensuremath{\estimation{\Sa}\ff} } 
+
+\newcommand{\Saest}%
+       {\ensuremath{\estimation{\Sa}} } 
+
+%===========================================================
+%=== DCT / CEPSTRUM
+%===========================================================
+\newcommand{\dct}[1]{\funcname{DCT}\leftc{#1}}
+\newcommand{\idct}[1]{\funcname{IDCT}\leftc{#1}}
+\newcommand{\cepsi}{q}
+\newcommand{\cf}{_\cepsi\!\lefta{\framei}}
+\newcommand{\cfprev}{_\cepsi(\framei-1)}
+\newcommand{\pitch}{f_0}
+
+%===========================================================
+
+
+
+%===========================================================
+%=== STATISTICS
+%===========================================================
+
+\newcommand{\pdfg}[2]%
+	{\ensuremath{\,p_{#1}\!\!\lefta{#2}} }	% general pdf p.(.)
+\newcommand{\pdfs}[1]%
+    {\ensuremath{{\pdfg{s}{#1}} }}    	        % ps(.)
+\newcommand{\pdfn}[1]%
+    {\ensuremath{{\pdfg{n}{#1}} }}     	        % pn(.)
+\newcommand{\pdf}[1]{\pdfg{\,}{#1}}      	% p(.)
+% conditional pdf
+\newcommand{\pdfcond}[2]{\pdf{#1\cnd#2}}
+\newcommand{\pdfh}[1]{\pdfg{h}{#1}}      	% histogram
+
+\newcommand{\sig}[1]{\sigma_{\!\scriptscriptstyle \mathrm{#1}}}%
+\newcommand{\sigS}{\sigma_{\!\scriptscriptstyle \mathrm{S}}}%  deviation of speech ss
+\newcommand{\sigSf}{\sigma_{\!{\scriptscriptstyle \mathrm{S}},\freqi}}% 
+\newcommand{\sigSfp}{\sigma_{\!{\scriptscriptstyle \mathrm{S}},\freqi-1}}% 
+\newcommand{\sigSfpp}{\sigma_{\!{\scriptscriptstyle \mathrm{S}},\freqi+1}}% 
+\newcommand{\sigSsq}{\sigma^2_{\!\scriptscriptstyle \mathrm{S}}}%
+\newcommand{\sigSsqf}{\sigma^2_{\!{\scriptscriptstyle \mathrm{S}},\freqi}}%  
+\newcommand{\sigSsqff}{\sigma^2_{\!{\scriptscriptstyle \mathrm{S}},\freqi}(\framei)}%  
+\newcommand{\sigSe}{\estimation{\sigma}_{\!{\scriptscriptstyle \mathrm{S}}}}
+\newcommand{\sigSef}{\estimation{\sigma}_{\!{\scriptscriptstyle \mathrm{S}},\freqi}}% 
+\newcommand{\sigSeSq}{\estimation{\sigma^2_{\!{\scriptscriptstyle \mathrm{S}}}}} % sigmaS squared estimate
+
+\newcommand{\sigN}{\sigma_{\!\scriptscriptstyle \mathrm{N}}}% deviation of noise sn
+\newcommand{\sigNf}{\sigma_{\!{\scriptscriptstyle \mathrm{N}},\freqi}}%
+\newcommand{\sigNsqf}{\sigma^2_{\!{\scriptscriptstyle \mathrm{N}},\freqi}}%  
+\newcommand{\sigNsq}{\sigma^2_{\!\scriptscriptstyle \mathrm{N}}}% 
+\newcommand{\sigNe}{\estimation{\sigma}_{\!{\scriptscriptstyle \mathrm{N}}}}
+\newcommand{\sigNef}{\estimation{\sigma}_{\!{\scriptscriptstyle \mathrm{N}},\freqi}}% 
+\newcommand{\sigNeSq}{\estimation{\sigma^2_{\!{\scriptscriptstyle \mathrm{N}}}}}
+\newcommand{\sigNefSq}{\estimation{\sigma^2_{\!{\scriptscriptstyle \mathrm{N}},\freqi}}}% 
+\newcommand{\sigNsqff}{\sigma^2_{\!{\scriptscriptstyle \mathrm{N}},\freqi}(\framei)}%  
+
+\newcommand{\sigXfSq}{{\sigma^2_{\!{\scriptscriptstyle \mathrm{X}},\freqi}}}% 
+
+
+\newcommand{\sigY}{\sigma_{\!\scriptscriptstyle \mathrm{Y}}}% 
+\newcommand{\sigYf}{\sigma_{\!{\scriptscriptstyle \mathrm{Y}},\freqi}}% 
+
+\newcommand{\sigSsqfML}{\sigma^{2,\mathrm{ML}}_{\!\scriptscriptstyle \mathrm{S},\freqi}}%
+\newcommand{\sigSsqML}{\sigma^{2,\mathrm{ML}}_{\!\scriptscriptstyle \mathrm{S}}}%        
+
+\newcommand{\sigSefSq}{\estimation{\sigma^2_{\!{\scriptscriptstyle \mathrm{S}},\freqi}}}% 
+
+                                        
+\newcommand{\prob}[1]{P\!\lefta{#1}}  % probability P(.)
+\newcommand{\probc}[2]{P\!\lefta{#1 \cnd #2}}
+\newcommand{\probcRV}[4]{P_{#1 \mid #2}\!\lefta{#3 \mid #4}}
+                                        % conditional probability P(.)
+\newcommand{\cnd}{\bigm|}               % condition |
+
+\newcommand{\hyp}[1]{{\cal H}_{#1}}     % hypothesis
+\newcommand{\hypf}[1]{{\cal H}_{#1,\freqi}}     % hypothesis
+\newcommand{\hypff}[1]{{\cal H}_{#1,\freqi}(\framei)}     % hypothesis
+
+\newcommand{\est}[1]{E\leftc{#1}}       % estimate E{.}
+\newcommand{\estc}[2]{E\leftc{\left.#1\right|#2}}
+                                % conditional estimate E{.|.}
+\newcommand{\varc}[2]{\,\mbox{\it Var}\leftc{\left.#1\right|#2}}
+                                % conditional variance Var{.|.}
+
+%===========================================================
+%=== SNR
+%===========================================================
+\newcommand{\snr}%
+    {\ensuremath{\xi} }% a priori SNR
+\newcommand{\snrf}%
+    {\ensuremath{\snr_\freqi} }%     
+\newcommand{\snrff}%
+    {\ensuremath{\snr\ff} }% 
+
+\newcommand{\snrg}[1]{\snr_{#1}}% general 
+\newcommand{\snrmin}{\snrg{\mathrm{min}}}% 
+
+\newcommand{\snre}{\estimation{\snr}}% estimated a priori SNR
+\newcommand{\snreff}{\snre\ff}% 
+\newcommand{\snrefprev}{\snre\ffprev}% 
+                                    % (frequ,frame-1)
+
+\newcommand{\snrpost}{\zeta} % aposteriori SNR
+\newcommand{\snrpostRV}{Z} % random variable: HERE WE NEED ANOTHER NAME
+\newcommand{\snrpostRVf}{Z_\mathrm{\freqi}} % random variable: HERE WE NEED ANOTHER NAME
+\newcommand{\snrpostf}{\snrpost_\freqi}
+\newcommand{\snrpostff}{\snrpost\ff}
+\newcommand{\snrposte}{\estimation{\snrpost}}
+\newcommand{\snrpostef}{\estimation{\snrpost}_\freqi}
+\newcommand{\snrposteff}{\estimation{\snrpost}\ff}
+
+\newcommand{\snrpostth}{{\snrpost_{th}}}
+
+\newcommand{\segimp}{\Delta\segsnr} % improvement of seg. SNR
+
+%===========================================================
+%=== FUNCTIONS
+%===========================================================
+\newcommand{\gain}{g}
+\newcommand{\Gain}{G}
+\newcommand{\Gainf}{\Gain_\freqi}
+\newcommand{\Gainff}{\Gain\ff}
+\newcommand{\Gainhypf}[1]{\Gain_{\hypnof{#1},\freqi}}
+\newcommand{\Gainmin}{\Gain_{\mb{min}}}
+\newcommand{\Gainlim}{\widetilde{\Gain}}
+\newcommand{\Gainlimf}{{\widetilde{\Gain}_\freqi}}
+
+
+\newcommand{\segsnr}%
+	{\ensuremath{\funcname{SNR}_{seg}} }% segmental SNR
+\newcommand{\mos}{MOS}% Mean-Opinion Score value
+
+%===========================================================
+%=== BRACKETS
+%===========================================================
+\newcommand{\lefta}[1]{\left(#1\right)}
+\newcommand{\leftb}[1]{\left[#1\right]}
+\newcommand{\leftc}[1]{\left\{#1\right\}}
+
+
+%===========================================================
+%=== OPERATORS
+%===========================================================
+
+\newcommand{\erf}{\funcname{erf}}
+\newcommand{\erfa}[1]{\,\mbox{erf}\!\lefta{#1}}
+\newcommand{\erfi}[1]{\,\mbox{erfi}\!\lefta{#1}}
+\newcommand{\erfca}[1]{\,\mbox{erfc}\!\lefta{#1}}
+\renewcommand{\exp}{\funcname{exp}} 
+\newcommand{\expa}[1]{\exp\!\lefta{#1}} 
+\newcommand{\expb}[1]{\exp\!\leftb{#1}}    
+\newcommand{\expc}[1]{\exp\!\leftc{#1}}
+\newcommand{\expp}[1]{\mathrm{e}^{#1}}
+\newcommand{\loga}[1]{\,\funcname{log}\!\lefta{#1}}
+\newcommand{\loge}[1]{\,\funcname{log}\!\lefta{#1}}
+\newcommand{\logd}[1]{\,\funcname{log}_2\!\lefta{#1}}
+\newcommand{\logt}[1]{\log_{10}\!\lefta{#1}}
+\newcommand{\logta}[1]{\logt\lefta{#1}}
+\newcommand{\gammaf}[1]{\,\Gamma\!\lefta{#1}}% gamma function
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sgn}[1]{\,\mbox{sgn}\!\left(#1\right)}
+\renewcommand{\jmath}{\mathrm{j}}
+\newcommand{\maxa}[1]{\max\!\lefta{#1}}
+\newcommand{\mina}[1]{\min\!\lefta{#1}}
+
+
+\newcommand{\idftexp}[3]{1/\numfreq \sum_{#2 =0 }^{\numfreq-1} #3 \, \expp{\jmath 2\pi #2 #1 /\numfreq}}
+\newcommand{\dftexp}[3]{            \sum_{#2 =0 }^{\numfreq-1} #3 \, \expp{- \jmath 2\pi #1 #2 /\numfreq}}
+\newcommand{\dft}[1]%
+	{\ensuremath{\funcname{DFT}\!\leftc{#1} }} %_{\dftlength}} }
+	% DFT transform symbol DFT{.}_M
+\newcommand{\idft}[1]%
+	{\ensuremath{\funcname{IDFT}\!\leftc{#1}} } %_{\dftlength}} }
+
+\newcommand{\intinf}{\int\limits_{-\infty}^{+\infty}}
+\newcommand{\Euler}{\mbox{  \boldmath$C$}}
+
+
+%===========================================================
+%=== possible italics
+%===========================================================
+\newcommand{\apriori}{\emph{a priori }}
+\newcommand{\Apriori}{\emph{A priori }}
+\newcommand{\aposteriori}{\emph{a posteriori }}
+\newcommand{\Aposteriori}{\emph{A posteriori }}
+\newcommand{\eg}{{e.g.\ }}
+\newcommand{\ie}{{i.e. }}
+\newcommand{\etal}{{et~al. }}
+
+
+
+%===========================================================
+%=== units
+%===========================================================
+\newcommand{\ms}{\,\mathrm{ms}}
+\newcommand{\Hz}{\,\mathrm{Hz}}
+\newcommand{\kHz}{\,\mathrm{kHz}}
+
+% decibel
+\newcommand{\dB}{\,\mathrm{dB}}
+
+
+%speech Enhancement
+\newcommand{\absfshift}{L}
+
+\newcommand{\biascorr}{\mathcal{B}}
+\newcommand{\indicator}{b}
+
+\newcommand{\alphadd}{\alpha_{\mathrm{dd}}}
+
+\newcommand{\srate}{f_\mathrm{s}}
+\newcommand{\lag}{\lambda}
+\newcommand{\timei}{n}
+\newcommand{\timeiseg}{\timei}
+\newcommand{\alttime}{m}
+\newcommand{\orderq}{q}
+\newcommand{\orderp}{p}
+\newcommand{\expjO}{\expp{\jmath \Omega} }
+
+
+
+% SPP
+\newcommand{\aprioriSPP}{\prob{\hyp{1}}}%{\rho}
+\newcommand{\aprioriSPPhat}{\widehat{P}(\hyp{1})}
+\newcommand{\aprioriSPPhatf}{\widehat{P}(\hypf{1})}
+\newcommand{\aprioriSPPhatff}{\widehat{P}(\hypf{1}(\framei))}
+\newcommand{\aprioriSAP}{\prob{\hyp{0}}}
+% \newcommand{\apostSPP}{{\mathcal{P}_\freqi}}
+\newcommand{\apostSPP}{\probc{\hyp{1}}{\Yc}}
+\newcommand{\apostSPPRV}{\probcRV{\hyp{1}}{\Yc}{\hyp{1}}{\yc}}
+\newcommand{\apostSPPff}{\probc{\hyp{1}}{\Ycff}}
+\newcommand{\apostSPPfr}{\probc{\hyp{1}}{\Yc(\framei)}}
+\newcommand{\apostP}{\mathcal{P}}
+\newcommand{\apostSAP}{{\probc{\hyp{0}}{y}}}
+\newcommand{\apostSAPf}{\apostSAP}
+
+
+
+\newcommand{\Per}{\mathrm{Per}}
+\newcommand{\Perf}{\mathrm{Per}_\freqi}
+\newcommand{\per}{\mathrm{per}}
+\newcommand{\perf}{\mathrm{per}_\freqi}
+
+
+\newcommand{\samplingPeriod}{T_{s}}
+\newcommand{\samplingFreq}{f_{s}}
+\newcommand{\sampTime}{t}
+\newcommand{\sampIndex}{n}
+\newcommand{\fourierSym}{\mathfrak{F}}
+\newcommand{\deltaPulse}{\delta}
+\newcommand{\contFunc}{x}
+\newcommand{\discFunc}{d}
+\newcommand{\sinCoef}{a}
+\newcommand{\cosCoef}{b}

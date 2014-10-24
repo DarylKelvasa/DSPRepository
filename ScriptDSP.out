@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{toc.1}{Contens}{}% 1
+\BOOKMARK [0][]{chapter.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Introduction}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Speech Production}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Source Filter Model}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.4}{Hearing}{chapter.1}% 6
+\BOOKMARK [0][]{chapter.2}{Pitch}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Fundamental Frequency Estimation}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.1.1}{Fundamental Freq Estimation by zero-crossing and peak measurement}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.2}{Fundamental Freq Estimation by autocorrelation fucntion}{section.2.1}% 10
+\BOOKMARK [0][]{chapter.3}{Spectral Trandformation}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Fourier transformation \(continuous time vs. discrete time\)}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.2}{Digitization of speech signals \(time-amplitude\)}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.3}{Discrete Fourier Transform \(DFT\)}{chapter.3}% 14
+\BOOKMARK [0][]{chapter.4}{Spectral Analysis of Speech Signals}{}% 15
+\BOOKMARK [1][-]{section.4.1}{Spectrogram \(narrow-band vs. wide-band\)}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.2}{Spectral Envelope}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.3}{Synthesis: Overlap-add technique}{chapter.4}% 18
+\BOOKMARK [0][]{chapter.5}{The Vocal Tract and Linear Predictive Coding}{}% 19
+\BOOKMARK [1][-]{section.5.1}{Tube Model of the Vocal Tract}{chapter.5}% 20
+\BOOKMARK [1][-]{section.5.2}{Linear Prediction}{chapter.5}% 21
+\BOOKMARK [2][-]{subsection.5.2.1}{Computation of AR coefficients}{section.5.2}% 22
+\BOOKMARK [0][]{chapter.6}{Cepstrum}{}% 23
+\BOOKMARK [0][]{chapter.7}{Bibliography}{}% 24

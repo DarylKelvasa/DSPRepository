@@ -1,0 +1,102 @@
+% CHAPTER 2 LESSON 1
+\clearpage
+\section{Fundamental Frequency Estimation}
+\label{Fundamental Frequency Estimation}
+
+
+
+%Einf�hrung in das Kapitel
+
+In the first part of this lectrure, we talked about very general things such as how speech is produced through the source filter model, the midel on how we produce speech.  The question now is if we have a speech signal, how we do we get the paramters out of it? So we said for the excitiation signal, we said that the parameters are voiced or unvoiced, and if its voiced, what is the fundamental frequecncy. So this again is an example of unvoiced and voiced sounds, and as we can see, the unvoiced sound is rather noise like, doesnt contain periodic structure, whereas the voiced signal has a periodic structure and the goal now is to estimate the fundamental frequency or the fundamental period which are reciprocals of each other. 
+
+This is a plot in the short time fourier transform domain, so we have here the time axis and here the frequency axis, with the color being the enegery of the signal, with read being lots of energy and blue being less energy. And then we see here the fundamental frequency and its harmonics.  We can see that at the fundamental frequency, we have energy in the signal. Also we see that the distance between the line are the same, becasue the distance between two harmonics is the fundamental frequency. 
+
+So what I'm trying to say is that it can be that fundamental frequency is very much attentuated by the filter function of the vocal tract, but the excitiation signal will still be there. The fundamental frequency, fo is an important paramter in speech signal processing.  We need it in many algorithms, for insatnce speech coding, also in speech synthesis, for instance if you have this voder you have to controil this pedal, meaning that we have to move the fundamental frequency. In coding it is also similar, you can use such a parametric form of speech production for a speech coder and then the fundamental frequency would be one paramter that we have to ttransm,it to a receiver site. also for speech enhancement, thje fundamental frequency can be used for instzance if our signal is filklerd with noise, what you know ....
+so assume there is whit noise filling up the gaps of a spectrogram you could attenutate the noise where speech is not present If you know the fundamental frequency you can keep those bits where the fundamental frequency is and reduce the enegy in the bins where the spectrum is noisy.  And with this, you can do speech enhancement. There are much more enhanced techniques, but this is just to give you an idea.  
+
+Very often in speech processing, we use the word pitch synonymously with fundamental frequency, but it important to realize that pitch is a perceptual quality, where pitch is a perceived quality of a tone, whereas fundamental frequency is a physical parameter. And what is the difference. If you ask people how they perceive the pitch of a tone this is also influenced by the loudness. So something would have a different pitch perception if its louder o softer. 
+
+The range of the fundamental frequency is between 40 and 600 Hz although 600 Hz is a bit on the high side.  This is something that would only be seen in children and typical speech fundfamentla frequencies are around 100Hz for male speaker, and about 200Hz for female speakers . This is just a rule of thumb
+.
+
+This is the residual effect. This is again just to give you an idea of what we mean when we talk about fundamental frequency. The idea is that we perceive the fundamental frequency of the sound even when this fundamental frequency is not part of the signal.  So what I am saying is if you in the frequency domain have a spectrum like this and then we apply a lowpass filter, we would still perceive a fundamental frequency and this is the case in telephone speech. In telephone speech, due to very historic reasons the low frequencie are not transmitted so basically only frequencies above 300Hz are being transmitted and as we learned before, the fundamental frequency is usually below this and so is not trransmitted.  But still, we are  distinguish netween the male and the female speaker and we can realize who is calling us and so forth becasue what we use to get an idea of the fundamental frwuency is the distance between harmonics. In fact, if we play a tone at 200HZ and a tone at 300Hz and we sum them up and play ithem together the resulting tone sounds lower because we are perceiveing the fundamental frequency. If we look at the signals below figure . If we sume both tones and look at the time domain signal, we'll see that the distance between the peaks is 100Hz. If we do a DFT of the signal, we'll see no energy at 100Hz because all we did was perform a linear addition of the two tones, and because of this, there acnnot be any new frequency coming into the signal.  However the fundamnetla period is till 100Hz and we perceive a lower tone. And so we can even still in telephone speech, distinguish male and female speakers. 
+
+There are still some problems when we throw away this high frequency information especially with speech sounds containing more high frequency information such as plosives.  It is almost impossible to distinguish some phonemes such as s and p in telephone speech when played by themselves. However, when heard in context they are still intelligible.  This is also seen when we must spell things over the phone and use a spelling alphabet such as c like charlie. In the telephone speech that we have today, we throw away a lot of information but people dont complain about it much becasue they are used to it. It is more expensive to transmit more data. There is also a problem with compatiblility.  If you have a phone the transmits wide band speech but the other person does not, we would not use it as much. FOr instance, VoIP there are softwares that use wide band speech codecs.  We hear more natural speech sounds. 
+
+How do we estimate it? The easiest way would be to take a time doimain signal and for instance and measure the time between the zero crossings. We could also measure the distance between the peaks.  What we also see here is that often, we dont have perfect periuodicity so this period does not look exactly like this one, but it looks similar. And you can also imagine that there is noise in the signal making it much more difficult to find these points where the periodic structure repeats. In other words, you can so this but it is prone to errors. But as said before, this is difficlut to do in an automatic setting, if we wanted to have a machine where we just have a recording from a microphone that stands somewhere in the room or it might be a microphone in the cell phone and youre tryong to estimate the fundamnetal frequency it is very difficult to do it based on this concept. The better way to do it is to use the autocorrelation function.
+
+The autocorrelation fucntion is given as the expected value the signal x(n) and the shifted version of itself.  If x would be a complex valued signal, then it would be the complex conjugate of the signal. But for time domain speech signals, this is not the case. So we can forget about the asterisk there. But what we see is that you take the siginal and shift it by lambda, multiply it and then take the expected value.  The expected value is then defeined as the integral over these two signals multiplied by the joint probability density function of the two signals. This is the formal definition. In practice you cannot really knoe this expected value because you don't really have the joint probability density function, so what we have to do is estimate it by replacing the integral with a summation over realizations of your signal. So what you do is mulktply the signal by itslef shifted by lambda and then average over a certain segement ie 30ms. And this we do for different lambdas, different shifts of the signal against itself and this will be a measure of the self similarity of the signal. Why is this? Lets say you have a periodic signal in time domain and now you shift it by zero, ie you dont shift it, you would have the same signal. So now we multiply the two signals and that basically means that, where we have postive values in one signal, we will have positive values in the other meaning thatthe product of the two is positive, and if both are negative, then the result will be positive.  And then we sum up these signals we'll get a large value.  On the other hand if you shift it by a differnt factor, lets say like this we can imagine that the result will be smaller because there will be parts where the one signal is postive and the other is negative and vice versa so meaning that if you do the multiplecation and sum it up over time, then you'll get definitely a smaller value tahn if you do this without .....So it will begin high and then decrease, but then achieve another maximum at the period.  
+
+It is also important to note that the Fourier transform of the autocorrelation function is called the power spectral density.  It is also interesting to look at the power spectral density of a signal and not only the autocorrelation. To understand this concept, for white noise what we would have, per definition, a white noise signal means that succesive samples of a signal are uncorrelated and that means that for the autocorrelation function we would have a peak only at zero where it is the same, but for any other shift of the signal, you would have that the autocorrelation cancels out and goes to zero. This is what you observe here so this is a measured autocorrelation function so here we didnt take the expected value but replaced it with an averaging over n samples and then what you see is that you have some some noise left so it doesnt really goto zero. But this is just an artifact of the measurement. Ideally speaking it would goto zero if you would have the real statistical expectation. If you look at the Fourier trandform of this, you know that the FOurier trandform of a delta peak corresponds to a flat spectrum. So what we would expect is a flat spectrum, but what you get is something noisy. So this is flat in the mean but noisy. But the main thing, then important thing to realize is that the white signal has a flat and thus white spectrum.
+
+So how is this for  speech? For speech, successive samples are not uncorrelated but they are correalted so especially for voice, what you would observe is that you would get a peak at lag zero, but also peaks at multiples of the fundamental period and now, what you would do for fundamental frequency estimation, this is also something that you would do in the computer excercise is to take a speech signal of frame Lenght N lets say 30ms, compute ACF, so shioft the signal against itself and then you need to find the first peak because this is what corresponds to the first period. SO the easiest way to do this is to do a maximum search.......
+
+If you look at the spectrum of a voiced speech sound, it looks like this.  What we see here is the fundamental frequency and multiples of it being the spectral harmonics and what you would also see is that there is a spectral envelopewhich is due to the resonances in the vocal tract. .
+
+WHen you do this excercise and compute the ACF, you need to deceide on a certain window length, the number of samples N that you choose. There is a certain tradeoff. If you have a window length that is just as large as one period or shorter, then the algorithm will not work very well becasue you cannot really shift it by one period and this also shown in this plot of the estimation error for the fundamental period .So if you take your window to shoret, you get bad performance, on the other hand,m if you take your window length longer hat means you would have multiple periods within this window that makes the estimation of the fundamental frequency more robust but of course there is a limit becasue the fundamnetla frequency will change over time. If we wouold speak at a constant fundamental frequency all of the we  time, then of course we would sound robotic. 30ms is roughly the range wher threee periods of the fundamental period fit into one window at a fundamnetla frequency of 100Hz so you would have roughly three periods for male speakers. 
+
+There are also variants of this method, so many pitch estimators are based on the Autocorrelation function. But there are alos alternatives.  A famous model is called YIN and its based oon the difference function.  The idea here is that you take a signal and the same signal shifted by a certain valueand subtract the two. if tois exacltly the fundamental period and the signal is perfectly periodic then this difference will goto 0. Its like having a sinusoid and then shiofting the sinusoid by one period and then subtract the tow then the difference will be zero because the signal is exaclty the same by its fundamnetla period. And so this idea can also be used to design a fundamnetla frequency estimator. So the idea is that you take the square of this difference function and then average over N samples.  And then you get a value D and this algorithm would try to find the to that minimizes ths D.  This method is very much related to the autocorrelation function because you see that the summation looks very similar to the autocorrelation defintion. SO what we can now do is solve this thing you multiply out this square, and then what you see is that this d function actually consists of the autocorrelation function at time  x(t) at t + To - the estimate at time t with lag to.
+
+And interetstingly if you have a perfectly periodic signal, you can show that the autocorrelation function at time 0 and the autocorrelation function at time t+To you would get exaclty the same result. In that tcase, the two methods are identical, however in practice, this is not the case, so we can make measurements of the error and we can see that ACF has a larger error than this difference function method. This is a trick used in this YIN approach.  There are also more tricks used to reduce the error even further.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+As introduced in the previous sections, speech can be modelled as being produced by two types of excitiation. Unvoiced speech is rather noise- like, lacking a periodic structure.  It is created from air flow being blown through the vocal tract by the lungs. The position of the vocal tract gives a spectral shape to this turbulent air flow.  Voiced speech is generated by the glottus opening and closing, thus regulating this air flow in a periodic manner.  The period of this opening and closing is referred to as the speech fundamental period, the inverse of which is the fundamental frequency.
+
+Speech fundamental frequency is often synonymously used with the term pitch.  It is important to note,however, that speech fundamental frequency is a quantitative value that is associated with the opening and closing of the glottus, whereas pitch is more qualitative, influenced by the loudness, length, as well as frequency of the speech.
+
+Because fundamental frequency has this effect upon our perception of speech, it becomes an important parameter in speech signal processing and has important implications in speech coding, enhancement, modeling, and recognition.  It is therefore necessary to develop tools in which this parameter can be estimated.  For this, the advantages and disadvantages of several methods are explored.
+
+
+
+	It is first important to note that fundamental frequency can still be estimated from its harmonics, even when it is not, itself, present in the signal.  This is exemplified by telephone speech which is generally band-pass filtered between 300Hz and 3400Hz in order to minimize bandwidth per user.  This range preserves the formants necessary for speech comprehension, however does not include the fundamental frequency.  
+	
+	How the fundamental frequency is still preserved is obvious when we look at the superpostion of two harmonics of a fundamental frequency.  If a signal has a fundamental frequency of 100Hz, there will be harmonics at 200Hz,300Hz, etc.  If this signal is high-pass filtered at 150Hz, the perceived signal will be a superpostion of the harmonics above 200Hz.  As can be seen in the accompanying figure, the sum of a 200Hz tone and 300Hz still displays a fundamental period of \begin{math}\frac{1}{100Hz}\end{math}, however the 100Hz tone is still not present in the frequency spectrum.
+
+\vspace{-5mm} %for optical corrections
+
+
+\subsection {Fundamental Freq Estimation by zero-crossing and peak measurement}  Prone to errors and hard to automize in an algorithm.  
+
+
+
+\subsection {Fundamental Freq Estimation by autocorrelation fucntion}.  
+
+We now define the autocorrelatiion function as:
+
+\begin{equation}\varphi_{xx}(\lambda) = E(x(n)x^*(n + \lambda) = \int^{\infty}_{-\infty} \int^{\infty}_{-\infty}
+uv\end{equation}
+% p^{x(n)x^*(n + \lamda)(u,v)du dv} \end{equation}
+
+
+A signal is white if succesive smaples of the signal are uncorrelated.  This implies that it has a flat power spectral density and has only one peak at lag zero.
+
+For speech, succesive samples are correlated therefore we will see peaks at lag zero and multiples of the fundamental period.  
+
+Window length must be longer than the fundamental period, but not so long that it cannot account for changes in the fundamnetal frequency. 
+

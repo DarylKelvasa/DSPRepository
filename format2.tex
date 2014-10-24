@@ -1,0 +1,601 @@
+%----------------------------------------------------------------------------------------
+%	VARIOUS REQUIRED PACKAGES
+%----------------------------------------------------------------------------------------
+\input{texMacros.tex}
+
+
+
+
+%--- from PPre format
+\usepackage[dvips]{graphicx}            % für zwei Bilder in Pelton Versuch
+%\usepackage{graphicx}                   % neue Graphik Umgebung
+\usepackage{color}
+% \usepackage{epsfig}                   % war mal ... 
+\usepackage{wrapfig}                    % JJT: for wrapping text around figs.
+\usepackage{floatflt}                      % wof"ur? - irgendwas f"ur ToC
+\usepackage{fancyhdr}                   % f�r all die Kopf- & Fu�zeilen
+\usepackage{german}                     % Grundeinstellungen
+\usepackage{times,a4wide}
+% \usepackage[applemac]{inputenc}        % Umlaute von Tastatur
+% \usepackage[microsoft]{inputenc}       % Umlaute von Tastatur
+\usepackage{setspace}                   % f"ur `doublespacing' z.B.
+\usepackage{versions}                    % `comments' u.�.
+%\usepackage{indentfirst}               % auch erster Absatz erh"alt Einzug
+%\usepackage{latexsym,ae}
+\usepackage{verbatim}
+%\usepackage{babel}
+\usepackage[section] {placeins}					%to (hopefully) avoid too many unprocessed floats
+\usepackage{epic}                       % f�r Spektrum Skizze
+                                        %       -- mu� vor pictex stehen
+%%%%%%%\usepackage{pictex}                     % l"adt `pictex' f"ur einige Pumpen Bilder
+                                        % `pictexwd' ist verbessertes Modul,
+                                        % l"auft aber nicht auf Mac, uk
+\usepackage[squaren]{SIunits}           % /metre u.a. im mathematikmodus
+
+\usepackage[latin9]{inputenc}		% für die Umlaute von Tastatur
+
+%\renewcommand{\familydefault}{\sfdefault} %Set default font to sans serif 
+		
+\selectlanguage{english}            % Hauptsprache: britisches Englisch
+
+\newcommand{\version}{30.09.07}    % damit etwas in der Variablen steht ...
+\newcommand{\name}[1]{\textsc{#1}}
+%--- /from PPre format
+
+\usepackage{titlesec} % Allows customization of titles
+
+
+%\titleformat{\part}[block]{\normalfont\sffamily}{}{}{}{} %/rk:doesn't work just like this
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc} %wird in format_PPRE_reader definiert
+%\usepackage{graphicx} % wird in format_PPRE_reader definiert
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{chapcolor}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
+
+% Font Settings
+\usepackage{avant} % Use the Avantgarde font for headings
+
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{lipsum} % Inserts dummy text
+
+\usepackage{tikz} % Required for drawing custom shapes
+\usetikzlibrary{arrows,calc,positioning}
+%\usepackage{subfig}
+
+\usepackage{pgfplots} % Required for drawing custom shapes
+\pgfplotsset{width=7cm,compat=1.8}
+%a) add the path to the /bin directory where u installed gnuplot to the windows "path" variable (und%er control panel -> system -> advanced -> environment variables)
+%b) make sure there is a COPY of the executable in the /bin folder called "gnuplot.exe" (what i had to do is copy "pgnuplot.exe" to "gnuplot.exe"... wtf!?)
+%c) add "-enable-write18" to the command line options of the output profile ur using in texniccenter
+
+\usepackage[labelfont=bf,textfont=small]{caption}
+% will apply to all subcaptions
+\usepackage[labelfont=bf,textfont=small,singlelinecheck=on,justification=raggedright]{subcaption}
+
+\usepackage[english]{babel} % English language/hyphenation
+
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+
+\usepackage{eso-pic} % Required for specifying an image background in the title page
+
+\usepackage{floatrow} % Required for setting the captions beside the image in a figure environment, generates error with double captions
+
+%Bibliograhy packages
+\usepackage{csquotes} %Required by bibtex
+% \usepackage[style=alphabetic, bibstyle=alphabetic, backend=biber]{biblatex}
+% \usepackage[nottoc, section, numbib, numindex]{tocbibind}  % fuegt
+\usepackage[nottoc, numbib, numindex]{tocbibind}  % fuegt Literaturverzeichnis ins Inhaltsverzeichnis ein
+
+\usepackage[colorlinks=true,
+linkcolor=black,
+citecolor=black,
+filecolor=black,
+urlcolor=black,
+bookmarks=true,
+bookmarksopen=true,
+bookmarksopenlevel=1,
+plainpages=false,
+pdfpagelabels=true]{hyperref} %rereferencing
+
+
+ \DeclareFontFamily{U}{wncy}{}
+    \DeclareFontShape{U}{wncy}{m}{n}{<->wncyr10}{}
+    \DeclareSymbolFont{mcy}{U}{wncy}{m}{n}
+    \DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 
+
+
+
+% Index
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{makeidx} % Required to make an index
+\makeindex % Tells LaTeX to create the files required for indexing
+
+% Define box and box title style
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=0.25\linewidth, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=red, text=white]
+
+%Remove Part before Apendix
+%\renewcommand{\partname}{}
+
+%\usepackage{morefloats}  % damit mehr floating  graphics verarbeitet werden k�nnen
+%----------------------------------------------------------------------------------------
+%	MAIN TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{titletoc} % Required for manipulating the table of contents
+
+\contentsmargin{0cm} % Removes the default margin
+
+% Part text styling
+\titlecontents{part}[1.25cm] % Indentation
+{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{black!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{black}} % Chapter number
+{}  
+{\color{black!60}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+% Chapter text styling
+%\titlecontents{chapter}[1.25cm] % Indentation
+\titlecontents{chapter}[0.35cm] % Indentation
+{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{chapcolor!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{chapcolor}} % Chapter number
+{}  
+{\color{chapcolor!60}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+% Section text styling
+\titlecontents{section}[1.25cm] % Indentation
+{\addvspace{5pt}\sffamily\bfseries} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{\sffamily\hfill\color{black}\thecontentspage} % Page number
+[]
+% Subsection text styling
+\titlecontents{subsection}[1.25cm] % Indentation
+{\addvspace{1pt}\sffamily\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\sffamily\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[] 
+
+%----------------------------------------------------------------------------------------
+%	MINI TABLE OF CONTENTS IN CHAPTER HEADS
+%----------------------------------------------------------------------------------------
+
+% Section text styling
+\titlecontents{lsection}[0em] % Indendating
+{\footnotesize\sffamily} % Font settings
+{}
+{}
+{}
+
+% Subsection text styling
+\titlecontents{lsubsection}[.5em] % Indentation
+{\normalfont\footnotesize\sffamily} % Font settings
+{}
+{}
+{}
+ 
+%----------------------------------------------------------------------------------------
+%	PAGE HEADERS
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancyhdr} % Required for header and footer configuration
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries #1}{}} % Chapter text font settings
+\renewcommand{\sectionmark}[1]{\markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
+\fancyhf{}
+\fancyhead[LO]{\rightmark} % Print the nearest section name on the left side of odd pages
+\fancyhead[RE]{\leftmark} % Print the current chapter name on the right side of even pages
+\renewcommand{\headrulewidth}{0.5pt} % Width of the rule under the header %
+\addtolength{\headheight}{2.5pt} % Increase the spacing around the header slightly
+\fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
+\fancyheadoffset{1cm}
+
+% Removes the header from odd empty pages at the end of chapters
+\makeatletter
+\renewcommand{\cleardoublepage}{
+\clearpage\ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\thispagestyle{empty}
+\newpage
+\fi}
+
+ \fancyfoot[LE,RO]{\sffamily\normalsize\thepage} % Font setting for the page number in the header
+\renewcommand{\footrulewidth}{0.0pt} % Width of the rule above the footer %
+\setlength{\footskip}{20mm}% Increase the spacing around the header slightly 
+
+
+
+\fancyfoot[LO]{\sffamily\normalsize\bfseries Digital Speech Processing} % Print the nearest section name on the left side of odd pages
+\fancyfoot[RE]{\sffamily\normalsize\bfseries Digital Speech Processing} % Print the current chapter name on the right side of even pages
+
+
+
+\fancyfootoffset{1cm}%Lengthens the rule%
+
+\setlength{\textheight}{235mm}% Increase the spacing around the header slightly 
+
+%----------------------------------------------------------------------------------------
+%	THEOREM STYLES
+%----------------------------------------------------------------------------------------
+
+\usepackage{mathtools,amsfonts,amssymb,amsthm} % For including math equations, theorems, symbols, etc
+
+\newcommand{\intoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
+\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+\newcommand{\intff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
+\newtheorem{notation}{Notation}[chapter]
+
+\newtheoremstyle{chapcolornum} % Theorem style name
+{7pt} % Space above
+{7pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{\small\bf\sffamily\color{chapcolor}} % Theorem head font
+{\;\;} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+{\small\sffamily\color{chapcolor}\thmname{#1}
+%{\small\sffamily\color{chapcolor}\thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+\thmnote{\ {\the\thm@notefont\sffamily\bfseries\color{black}--- #3.}}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$} % Optional qed square
+
+\newtheoremstyle{blacknumex} % Theorem style name
+{7pt} % Space above
+{7pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{\small\bf\sffamily} % Theorem head font
+{\;\;} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+%{\small\sffamily{\tiny\ensuremath{\blacksquare}}\ \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}} % Theorem text (e.g. Theorem 2.1) %Removed black qed box in next line
+{\ \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+
+\thmnote{\ {\the\thm@notefont\sffamily\bfseries--- #3.}}} % Optional theorem note
+
+\newtheoremstyle{blacknum} % Theorem style name
+{7pt} % Space above
+{7pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{\small\bf\sffamily} % Theorem head font
+{\;\;} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+{\small\sffamily\thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+\thmnote{\ {\the\thm@notefont\sffamily\bfseries--- #3.}}} % Optional theorem note
+
+\newtheoremstyle{nonum} % Theorem style name
+{7pt} % Space above
+{7pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{\small\bf\sffamily} % Theorem head font
+{\;\;} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+{\small\sffamily\thmname{#1} % Theorem text (e.g. Theorem 2.1)
+\thmnote{\ {\the\thm@notefont\sffamily\bfseries--- #3.}}} % Optional theorem note
+
+\makeatother
+
+
+% Defines the theorem text style for each type of theorem to one of the three styles above
+\theoremstyle{chapcolornum}
+%\newtheorem{theoremeT}{Theorem}[chapter]
+\newtheorem{theoremeT}{Important}
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{problem}{Problem}[chapter]
+\newtheorem{exerciseT}{Exercise}[chapter]
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}{Example}[chapter]
+\theoremstyle{blacknum}
+\newtheorem{vocabulary}{Vocabulary}[chapter]
+\newtheorem{definitionT}{Definition}[chapter]
+\theoremstyle{nonum}
+\newtheorem{corollaryT}{Learning objectives}
+
+
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION OF COLORED BOXES
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+% Theorem box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+backgroundcolor=chapcolor!10,
+linecolor=chapcolor,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=1pt]{tBox}	
+
+
+
+% Exercise box	  
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=chapcolor!10,
+linecolor=chapcolor,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}	
+
+
+% Definition box
+\newmdenv[skipabove=10pt,
+skipbelow=10pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=chapcolor,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=2pt,
+innerbottommargin=0pt]{dBox}	
+
+% Corollary box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=chapcolor!10,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=5pt]{cBox}				  
+		  
+
+% Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
+\newenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+%\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{chapcolor}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				   %Removed black qed box in next line
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{chapcolor}}\end{exerciseT}\end{eBox}}
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
+%\newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		%Removed black qed box in next line
+\newenvironment{example}{\begin{exampleT}}{\hfill{}\end{exampleT}}		
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}	
+
+%----------------------------------------------------------------------------------------
+%	WARNING ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{warning}{\par\vskip10pt\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=40pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{
+
+ 
+
+\begin{tikzpicture}[overlay]
+%\node[draw=chapcolor!60,line width=1pt,circle,fill=chapcolor!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{chapcolor}{R}};
+  \node[anchor= north west] at (-40pt,15pt){\includegraphics[scale=0.45]{./Pictures/Icon_Stop/Icon-Stop.pdf} 
+		}; %Semicolon important, separates icon from text
+\end{tikzpicture}
+} 
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+%----------------------------------------------------------------------------------------
+%	IDEA ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{idea}{\par\vskip10pt\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=35pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{
+
+ 
+
+\begin{tikzpicture}[overlay]
+%\node[draw=chapcolor!60,line width=1pt,circle,fill=chapcolor!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{chapcolor}{R}};
+  \node[anchor= north] at (-15pt,0pt){\includegraphics[scale=1]{./Pictures/Icon_Idea/Idea-icon.pdf} 
+		}; %Semicolon important, separates icon from text
+\end{tikzpicture}
+} 
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION NUMBERING IN THE MARGIN
+%----------------------------------------------------------------------------------------
+
+\newcommand\numb[1]{{%
+\begin{center}
+\begin{tikzpicture}
+\node (0,0) [rounded corners=25pt,fill=white,fill opacity=.6,text opacity=1,draw=chapcolor,draw opacity=1,line width=2pt,inner sep=15pt,align=
+center]{\thesection \  \\ \makebox[15cm]{#1}};
+\end{tikzpicture}
+\end{center}
+}}%
+
+\titleformat{\section}[display]{\color{black}\normalfont\sffamily\bfseries\large}{}{0cm}{\numb}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+
+
+\makeatletter
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\sffamily\bfseries}}
+
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{0.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}                        
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{0.1ex}
+{\normalfont\small\sffamily\bfseries}}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER HEADINGS
+%----------------------------------------------------------------------------------------
+
+\newcommand{\thechapterimage}{}
+\newcommand{\chapterimage}[1]{\renewcommand{\thechapterimage}{#1}}
+
+\def\thechapter{\arabic{chapter}} 
+\def\@makechapterhead#1{
+\thispagestyle{empty}
+{\centering \normalfont\sffamily
+\ifnum \c@secnumdepth >\m@ne
+\if@mainmatter
+\startcontents
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+
+
+
+\draw[anchor=west] (0cm,-12cm) node [rounded corners=25pt,fill=white,fill opacity=.6,text opacity=1,draw=chapcolor,draw opacity=1,line width=2pt,inner sep=15pt]{\huge\sffamily\bfseries\textcolor{black}{\thechapter\ ---\ #1\vphantom{plPQq} \makebox[15cm]{}}};
+
+
+\end{tikzpicture}};
+\end{tikzpicture}}
+\par\vspace*{260\p@}
+\fi
+\fi
+}
+\def\@makeschapterhead#1{
+\thispagestyle{empty}
+{\centering \normalfont\sffamily
+\ifnum \c@secnumdepth >\m@ne
+\if@mainmatter
+%\startcontents
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west] at (-4pt,4pt) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+\draw[anchor=west] (3cm,-12cm) node [rounded corners=25pt,fill=white,opacity=.7,inner sep=15.5pt]{\huge\sffamily\bfseries\textcolor{black}{\vphantom{plPQq}\makebox[10cm]{}}};
+\draw[anchor=west] (3cm,-12cm) node [rounded corners=25pt,draw=chapcolor,line width=2pt,inner sep=15pt]{\huge\sffamily\bfseries\textcolor{black}{#1\vphantom{plPQq}\makebox[10cm]{}}};
+\end{tikzpicture}};
+\end{tikzpicture}}
+\par\vspace*{260\p@}
+\fi
+\fi
+}
+\makeatother
+
+
+
+
+
+%%%%%%%%%%%%%%%% SECTION HEADINGS %%%%%%%%%%%%%%%%%%%%%
+    %\titleformat{\section}{\LARGE\scseries}{\thesection}{1em}{}
+		%\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+		%\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+		%\titleformat{\paragraph}{\large\bfseries}{\theparagraph}{1em}{}
+
+
+
+
+%%%%%%%       Zähler für Fragen und Aufgaben definieren      %%%%%%%%%%%
+% 
+% Die folgenden 'environments' stellen eine fortlaufende Z�hlung von 
+% 'Fragen' und 'Aufgaben' �ber ein 'Xperiment' sicher; die Umgebungen k�nnen
+% selbstverst�ndlich verlassen werden (um beliebigen anders formatierten 
+% Text anzuf�hren).
+% 
+% F�r jeden Versuch soll ein K�rzel definiert werden, da� einer durchgehenden
+% Z�hlung von 'Fragen' und 'Aufgaben' vorangestellt wird.
+% 
+%%%%%%                                                       %%%%%%%%%%%
+
+\newcommand{\xpref}{XYZ}             % f"ur jeden Versuch Namen neu vergeben!!!
+
+\newcounter{intZaehler}  \setcounter{intZaehler}{0}     % f"ur interne Z"ahlung
+\newcounter{subZaehler}  \setcounter{subZaehler}{0}     % f"ur interne Z"ahlung
+\newcounter{quZaehler}  \setcounter{quZaehler}{0}       % f"ur interne Z"ahlung
+
+\newcounter{questZ}  
+\setcounter{questZ}{0}        % f"ur jeden Versuch auf `0' setzen !!!
+
+\newenvironment{question}{%                   produces an indented line
+\begin{list}{\bfseries\xpref$\;$\ Q\, --\, %    within bold label and running text
+    \arabic{quZaehler}}{%                     for a sequential numbering 
+    \usecounter{quZaehler}%                   of questions throughout 
+    \setcounter{quZaehler}{\value{questZ}}%   the entire section
+    \setlength{\topsep}{0pt}%                  of an experiment;  
+    \addtolength{\leftmargin}{12pt}%            form of label: 
+    \addtolength{\labelsep}{5pt} }%            '>\xpref< Qu -- >extZaehler.<'
+\setlength{\listparindent}{\parindent}%                   usage:
+\setlength{\itemindent}{\parindent}%                      \begin{question}
+\setlength{\parsep}{\parskip}\mdseries \slshape}%         \item  > text for question < 
+{\end{list}\setcounter{questZ}{\value{quZaehler}}}%      \end{question}
+
+\newcounter{taskZ} 
+\setcounter{taskZ}{0}         % f"ur jeden Versuch auf `0' setzen !!!
+
+\newenvironment{task}{%                           own environment to number 
+\begin{list}{\bfseries\xpref$\;$\ T\, --\, %       `tasks'
+        \arabic{intZaehler} }%                    within a section 
+    {\usecounter{intZaehler}%                  (subsections may be labled
+    \setcounter{intZaehler}{\value{taskZ}}%                 `Task -- x') 
+    \setlength{\topsep}{0pt}% 
+    \setlength{\leftmargin}{40pt}%
+%    \setlength{\rightmargin}{10pt}%
+    \addtolength{\labelsep}{5pt} }%
+\setlength{\listparindent}{\parindent}%              usage:
+\setlength{\itemindent}{\parindent}%                 \begin{task}
+\setlength{\parsep}{\parskip}%                       \item > text for
+\mdseries}%                                                    task < 
+{\end{list}\setcounter{taskZ}{\value{intZaehler}}}%     \end{task}
+
+\newcounter{subtaskZ}[taskZ] 
+% automatically reset to `zero' when `taskZ' is incremented 
+% !!! funktioniert nicht bei mir, 2005/11/30, uk
+\setcounter{subtaskZ}{0}         % f"ur jeden neuen Task auf `0' setzen !!!
+
+\newenvironment{subtask}{%                         nested environment to number 
+\begin{list}{\bfseries %\ SubTask\ --\ %              `subtasks' sequentially 
+        ( \alph{subZaehler} ) }%                   within a main task
+    {\usecounter{subZaehler}%                    (subsections MAY be labled
+    \setcounter{subZaehler}{\value{subtaskZ}}%            `SubTask -- x') 
+    \setlength{\topsep}{0pt}%                  
+%    \setlength{\rightmargin}{10pt}%
+    \addtolength{\labelsep}{5pt} }%
+\setlength{\listparindent}{\parindent}%            usage:
+\setlength{\itemindent}{\parindent}%               \begin{subtask}
+\setlength{\parsep}{\parskip}%                     \item  > text for
+\mdseries}%                                                 subtask <
+{\end{list}\setcounter{subtaskZ}{\value{subZaehler}}}%    \end{subtask}
+
+%%Set paragraph format
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0mm}
